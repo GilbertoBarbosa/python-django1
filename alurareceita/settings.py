@@ -120,7 +120,7 @@ USE_TZ = True
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATIC_URL = 'static/'
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'alurareceitas/static')
+    os.path.join(BASE_DIR, 'alurareceita/static')
 ]
 
 # Default primary key field type
