@@ -46,7 +46,6 @@ def login(request):
             messages.error(request, 'Os campos email e senha não podem ficar em branco')
             return redirect('login')
 
-        print(email, senha)
         if User.objects.filter(email=email).exists():
             nome = User.objects.filter(email=email).values_list('username', flat=True).get()
             user = auth.authenticate(request, username=nome, password=senha)
@@ -55,6 +54,7 @@ def login(request):
                 auth.login(request, user)
                 messages.success(request, 'Login realizado com sucesso')
                 return redirect('dashboard')
+                
 
     return render(request, 'usuarios/login.html')
 
@@ -100,3 +100,9 @@ def campo_vazio(campo):
 
 def senhas_nao_sao_iguais(senha, senha2):
     return senha != senha2
+
+def deleta_receita(request, receita_id):
+    receita = get_object_or_404(Receita, pk=receita_id)
+    receita.delete()
+
+    return redirect('dashboard')
